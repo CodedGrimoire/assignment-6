@@ -234,3 +234,41 @@ footer{
     color: #0b2316;
     text-align: center;
 }
+.main-body{
+    display: flex;
+}
+
+@media (max-width: 576px){
+  .hero-leaf{
+     display:none;
+  }
+  .impact-grid{
+    grid-template-columns: 1fr;
+  }
+ 
+  .about-sect{
+    padding:48px 70px 56px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+ .donate-form{
+    width: 92%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  .donate-form *{
+    box-sizing: border-box;
+  }
+
+  .donate-form input,
+  .donate-form select,
+  .donate-btn{
+    width: 100%;
+  }
+}
+

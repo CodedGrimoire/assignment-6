@@ -484,3 +484,8 @@ footer{
   color:#0b2316;
   white-space:nowrap;
 }
+.cat-btn.active{
+  background:#166534;
+  color:#ffffff;
+  border-color:#166534;
+}

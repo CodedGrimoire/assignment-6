@@ -1,0 +1,236 @@
+/* your base */
+body{
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  background-color:#e1f1e8;
+  margin: 0;
+}
+
+nav{
+  background-color:#15803D;
+  height:40px;
+  padding:20px;
+  width:auto;
+}
+
+.hero-section{
+  background-color:#CFF0DC;
+}
+
+.impact-section{ background-color:#CFF0DC; } /* fallback */
+.plant-tree{ background-color:#166534; }
+footer{ background-color:#14532D; height:60px; }
+.yellow-button{ background-color:#FACC15; text-decoration:#15803D; }
+
+
+/* NAVBAR */
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:40px;
+  color:white;
+}
+
+.brand{
+  font-weight:800;
+  font-size:1.25rem;
+}
+
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:28px;
+  margin:0;
+  padding:0;
+}
+
+.nav-links a{
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:500;
+}
+
+.nav-cta{
+  padding:.55rem 1rem;
+  border-radius:999px;
+  font-weight:700;
+  color:#103118;
+}
+
+
+/* HERO */
+.hero-section {
+  position: relative;          /* allows absolute positioning */
+  padding: 100px 0;            /* more breathing space */
+  text-align: center;
+  color: #174a2f;
+  background-color: #CFF0DC;
+  overflow: hidden;            /* keep leaves inside */
+  gap: 10px;;
+}
+
+.hero-inner h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 3.5vw + 1rem, 3.25rem);
+  font-weight: 800;
+  color: #0b2316;
+}
+
+.hero-inner p {
+  margin: 0 auto 24px;
+  max-width: 650px;
+  font-size: 1.05rem;
+}
+
+.yellow-button.hero-cta {
+  display: inline-block;
+  padding: .8rem 1.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #0d260f;
+  font-weight: 700;
+}
+
+/* LEAVES */
+.hero-leaf {
+  position: absolute;
+                        
+  width: 450px;       
+  height: auto;
+  bottom:8px;
+  
+}
+
+.hero-leaf-left {
+  left: -100px;   /* push leaf further to the left */
+}
+
+.hero-leaf-right {
+  right: -100px;  /* push leaf further to the right */
+}
+
+
+
+/* IMPACT */
+.impaact-section,
+.impact-section{
+  padding:48px 40px 56px;
+  background:#CFF0DC;
+}
+
+.impaact-section h2{
+  text-align:center;
+  margin:0 0 24px;
+  color:#0b2316;
+  font-size:1.8rem;
+}
+
+.impact-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.impact-card{
+  background:#fff;
+  border-radius:14px;
+  padding:28px;
+  text-align:center;
+  
+}
+.impact-card:hover {
+  background-color: #2b995b; 
+  transition: background-color 0.3s ease;
+}
+
+
+.impact-number{
+  color:#0e5131;
+  font-weight:800;
+  font-size:2rem;
+  margin-bottom:6px;
+}
+
+.impact-label{
+  color:#2a4a37;
+  font-size:.95rem;
+}
+
+
+/* PLANT TREE */
+.plant-tree{
+  padding:64px 0 80px;
+  color:#eaffec;
+}
+
+.plant-tree h2{
+  text-align:center;
+  margin:0 0 20px;
+  font-size:1.8rem;
+}
+
+.donate-form{
+  width:570px;
+  margin:0 auto;
+  background:rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:22px;
+  display:grid;
+  gap:12px;
+}
+
+.donate-form input,
+.donate-form select{
+  width:500;
+  height:44px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,.08);
+  padding:0 12px;
+  font-size:0.95rem;
+}
+
+.donate-btn{
+  border:none;
+  height:44px;
+  border-radius:999px;
+  font-weight:800;
+  
+  color:#133a24;
+}
+
+
+/* FOOTER */
+footer{
+  display:flex;
+  align-items:center;
+  color:#d7ffe4;
+    display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.footer-inner{
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.about-section{
+    padding:48px 70px 56px;
+}
+.about-sect{
+    padding:48px 70px 56px;
+   display: flex;
+   gap: 20px;
+    
+    align-items: center;
+    justify-content: center;
+}
+.about-section h1{
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: #0b2316;
+    text-align: center;
+}

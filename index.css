@@ -272,6 +272,12 @@ footer{
   .donate-btn{
     width: 100%;
   }
+    .main-body{ 
+        grid-template-columns: 200px 1fr;
+     }
+    .cards-grid{
+         grid-template-columns: 1fr;
+         }
 }
 
 
@@ -287,8 +293,14 @@ footer{
   width:min(1200px, 92%);
   margin:20px auto;
 }
+.category{
+      border-radius:8px;
+  padding:18px;
+  height:max-content;
+  box-shadow:0 1px 0 rgba(0,0,0,.04), 0 6px 24px rgba(0,0,0,.06);
 
-.category,
+}
+
 .your-cart{
   background:#ffffff;
   border-radius:8px;
@@ -315,12 +327,6 @@ footer{
   text-align:left;
   cursor:pointer;
   font: inherit;
-}
-.cat-btn:hover{ background:#eaf5ef; }
-.cat-btn.active{
-  background:#e1f1e8;
-  border-color:#cfe6db;
-  font-weight:700;
 }
 
 .trees-cards h1{
@@ -387,7 +393,7 @@ footer{
   justify-content:center;
   box-shadow:0 3px 0 rgba(0,0,0,.08);
 }
-.add-btn:hover{ filter:brightness(1.05); }
+
 
 .price{
   color:#0b2316;
@@ -419,14 +425,4 @@ footer{
   padding-top:8px;
   border-top:1px solid #e6efe9;
   color:#0b2316;
-}
-
-@media (max-width: 1024px){
-  .main-body{ grid-template-columns: 200px 1fr; }
-  .your-cart{ grid-column: 1 / -1; }
-}
-
-@media (max-width: 720px){
-  .main-body{ grid-template-columns: 1fr; }
-  .cards-grid{ grid-template-columns: 1fr; }
 }

@@ -1,22 +1,14 @@
-allCategoryURL = "https://openapi.programming-hero.com/api/categories";
-allPlantsURL = "https://openapi.programming-hero.com/api/plants";
-plantByCategory = id => `https://openapi.programming-hero.com/api/category/${id}`;
-plantsDetailsById = id => `https://openapi.programming-hero.com/api/plant/${id}`;
-
-const catList = document.querySelector('.cat-list');
-const grid = document.querySelector('.cards-grid');
-const cartList = document.querySelector('.cart-list');
-const totalEl = document.querySelector('.cart-total strong');
-const modal = document.getElementById('plant_modal');
-const pmContent = document.getElementById('pm_content');
 
 let currentPlants = [];
 let cart = [];
 let total = 0;
+const plantsDetailsById = id => `https://openapi.programming-hero.com/api/plant/${id}`;
 
 async function loadCategories() {
-  const res = await fetch(allCategoryURL);
+  const res = await fetch("https://openapi.programming-hero.com/api/categories");
   const { categories } = await res.json();
+  
+  const catList = document.querySelector('.cat-list');
   catList.innerHTML =
     `<button class="cat-btn active" data-id="all">All Trees</button>` +
     categories.map(c => `<button class="cat-btn" data-id="${c.id}">${c.category_name}</button>`).join('');
@@ -29,82 +21,177 @@ async function loadCategories() {
   });
 }
 
+
+const grid = document.querySelector('.cards-grid');
+
+
+
+
+
+const allPlants = "https://openapi.programming-hero.com/api/plants";
+const plantByCategoryWithID = id => `https://openapi.programming-hero.com/api/category/${id}`;
 async function loadPlants(categoryId = "all") {
-  const url = categoryId === "all" ? allPlantsURL : plantByCategory(categoryId);
+  const url = categoryId === "all" ? allPlants : plantByCategoryWithID(categoryId);
   const res = await fetch(url);
   const data = await res.json();
   currentPlants = data.plants || [];
-  grid.innerHTML = currentPlants.map(p => `
-    <div class="tree-card" data-id="${p.id}">
-      <div class="thumb" style="background:url('${p.image}') center/cover no-repeat"></div>
-      <div class="tree-info">
-        <h4>${p.name}</h4>
-        <p>${p.description}</p>
-        <span class="tag">${p.category}</span>
-      </div>
-      <div class="card-foot">
-        <button class="add-btn" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">Add to Cart</button>
-        <span class="price">$${p.price}</span>
-      </div>
-    </div>
-  `).join('');
+
+const gridOfCards = document.querySelector('.cards-grid');
+  grid.innerHTML = "";
+
+ 
+  currentPlants.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "tree-card";
+    card.dataset.id = p.id;
+
+    
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    thumb.style.background = `url('${p.image}') center/cover no-repeat`;
+
+   
+    const info = document.createElement("div");
+    info.className = "tree-info";
+    const title = document.createElement("h1");
+    title.textContent = p.name;
+    const desc = document.createElement("p");
+    desc.textContent = p.description;
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = p.category;
+    info.append(title, desc, tag);
+
+   
+    const foot = document.createElement("div");
+    foot.className = "card-foot";
+    const addBtn = document.createElement("button");
+    addBtn.className = "add-btn";
+    addBtn.dataset.id = p.id;
+    addBtn.dataset.name = p.name;
+    addBtn.dataset.price = p.price;
+    addBtn.textContent = "Add to Cart";
+    const price = document.createElement("span");
+    price.className = "price";
+    price.textContent = `$${p.price}`;
+    foot.append(addBtn, price);
+
+    
+    card.append(thumb, info, foot);
+
+    
+    gridOfCards.appendChild(card);
+  });
 }
 
-grid.addEventListener('click', (e) => {
-  const add = e.target.closest('.add-btn');
-  if (add) {
-    addToCart({
-      id: Number(add.dataset.id),
-      name: add.dataset.name,
-      price: Number(add.dataset.price)
-    });
-    return;
-  }
-  const card = e.target.closest('.tree-card');
-  if (!card) return;
-  const id = Number(card.dataset.id);
-  const plant = currentPlants.find(p => Number(p.id) === id);
-  if (!plant) return;
-  pmContent.innerHTML = `
-    <img src="${plant.image}" alt="${plant.name}" class="pm-img">
-    <h3 class="pm-title">${plant.name}</h3>
-    <p class="pm-desc">${plant.description}</p>
-    <div class="pm-meta">
-      <span class="pm-badge">${plant.category}</span>
-      <span class="pm-price">$${plant.price}</span>
-    </div>
-    <button id="pm_add" class="pm-add">Add to Cart</button>
-  `;
-  modal.showModal();
-  document.getElementById('pm_add').onclick = () => {
-    addToCart({ id: plant.id, name: plant.name, price: plant.price });
-    modal.close();
-  };
-});
-
+function handleAddToCartClick(addBtn) {
+  addToCart({
+    id: Number(addBtn.dataset.id),
+    name: addBtn.dataset.name,
+    price: Number(addBtn.dataset.price)
+  });
+   alert(`${addBtn.dataset.name} added to cart! `);
+}
+const modal = document.getElementById('plant_modal');
 modal.addEventListener('click', (e) => {
   if (e.target === modal || e.target.id === 'pm_close') modal.close();
 });
 
+
 function addToCart(plant){
   cart.push(plant);
-  const li = document.createElement('li');
-  li.innerHTML = `
-    <span>${plant.name}</span>
-    <span>$${plant.price} <button class="remove-btn" aria-label="Remove" style="margin-left:8px;cursor:pointer;">✖</button></span>
-  `;
+const li = document.createElement("li");
+const nameEl = document.createElement("span");
+nameEl.textContent = plant.name;
+
+const priceEl = document.createElement("span");
+priceEl.textContent = `$${plant.price} `;
+
+const removeBtn = document.createElement("button");
+removeBtn.className = "remove-btn";
+removeBtn.title = "Remove";
+removeBtn.textContent = "✖";
+
+priceEl.appendChild(removeBtn);
+li.append(nameEl, priceEl);
+const cartList = document.querySelector('.cart-list');
+const totalEl = document.querySelector('.cart-total strong');
   cartList.appendChild(li);
-  total += plant.price;
+  total = total+plant.price;
   totalEl.textContent = `$${total}`;
   li.querySelector('.remove-btn').addEventListener('click', () => {
     li.remove();
-    const i = cart.findIndex(p => p.id === plant.id);
-    if (i !== -1) cart.splice(i, 1);
-    total -= plant.price;
-    if (total < 0) total = 0;
+
+   
+    cart = cart.filter(p => p.id !== plant.id);
+    total = total-plant.price;
+   
     totalEl.textContent = `$${total}`;
   });
 }
 
 loadCategories();
 loadPlants();
+function renderPlantModal(plant) {
+    const pmContent = document.getElementById('pm_content');
+  pmContent.innerHTML = ""; 
+
+  const img = document.createElement("img");
+  img.src = plant.image;
+  img.alt = plant.name;
+  img.className = "pm-img";
+
+  const title = document.createElement("h1");
+  title.className = "pm-title";
+  title.textContent = plant.name;
+
+  const desc = document.createElement("p");
+  desc.className = "pm-desc";
+  desc.textContent = plant.description;
+
+  const meta = document.createElement("div");
+  meta.className = "pm-meta";
+
+  const badge = document.createElement("span");
+  badge.className = "pm-badge";
+  badge.textContent = plant.category;
+
+  const price = document.createElement("span");
+  price.className = "pm-price";
+  price.textContent = `$${plant.price}`;
+
+  meta.append(badge, price);
+
+  const addBtn = document.createElement("button");
+  addBtn.id = "pm_add";
+  addBtn.className = "pm-add";
+  addBtn.textContent = "Add to Cart";
+
+  addBtn.onclick = () => {
+    addToCart({ id: plant.id, name: plant.name, price: plant.price });
+    modal.close();
+  };
+
+  pmContent.append(img, title, desc, meta, addBtn);
+}
+function handleCardClick(card) {
+  const id = Number(card.dataset.id);
+  const plant = currentPlants.find(p => Number(p.id) === id);
+  if (!plant) return;
+  renderPlantModal(plant);
+  modal.showModal();
+}
+
+
+grid.addEventListener("click", (e) => {
+  const addBtn = e.target.closest(".add-btn");
+  if (addBtn) {
+    handleAddToCartClick(addBtn);
+    return;
+  }
+
+  const card = e.target.closest(".tree-card");
+  if (card) {
+    handleCardClick(card);
+  }
+});

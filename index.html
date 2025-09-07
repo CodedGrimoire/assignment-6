@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css"/>
   <title>Green Earth</title>
 </head>
 <body>
-  <!-- NAVBAR -->
   <nav>
     <div class="container nav-inner">
       <div class="brand">Green Earth</div>
@@ -22,11 +23,9 @@
   </nav>
 
   <main>
-    <!-- HERO -->
     <section class="hero-section" id="about">
       <img src="assets/hero-leaf1.png" alt="" class="hero-leaf hero-leaf-left" aria-hidden="true">
       <img src="assets/hero-leaf2.png" alt="" class="hero-leaf hero-leaf-right" aria-hidden="true">
-
       <div class="hero-inner container">
         <h1>Plant a Tree, Grow a Future</h1>
         <p>Join our mission to plant 1&nbsp;million trees and make the Earth greener for future generations.</p>
@@ -34,7 +33,6 @@
       </div>
     </section>
 
-    <!-- MAIN BODY -->
     <section class="main-body">
       <div class="category">
         <h3>Categories</h3>
@@ -55,7 +53,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section class="about-section">
       <h1>About the Campaign</h1>
       <div class="about-sect">
@@ -76,8 +73,7 @@
       </div>
     </section>
 
-    <!-- IMPACT -->
-    <section class="impaact-section" id="impact">
+    <section class="impact-section" id="impact">
       <div class="container">
         <h2>Our Impact</h2>
         <div class="impact-grid">
@@ -97,7 +93,6 @@
       </div>
     </section>
 
-    <!-- DONATE -->
     <section class="plant-tree" id="plant">
       <div class="container">
         <h2>Plant a Tree Today</h2>
@@ -119,12 +114,17 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
       <small>© 2025 Green Earth. All Rights Reserved.</small>
     </div>
   </footer>
+
+  <!-- FIXED MODAL -->
+  <dialog id="plant_modal" class="modal">
+    <div class="modal-box" id="pm_content"></div>
+  </dialog>
+
   <script src="index.js"></script>
 </body>
 </html>

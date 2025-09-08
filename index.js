@@ -1,20 +1,32 @@
 
 let currentPlants = [];
 let cart = [];
-let total = 0;
+
 const plantsDetailsById = id => `https://openapi.programming-hero.com/api/plant/${id}`;
 
-async function loadCategories() {
+async function fetchCategories() {
   const res = await fetch("https://openapi.programming-hero.com/api/categories");
   const { categories } = await res.json();
-  
+  return categories;
+}
+
+
+const grid = document.querySelector('.cards-grid');
+
+function renderCategories(categories) {
   const catList = document.querySelector('.cat-list');
+ 
   catList.innerHTML =
     `<button class="cat-btn active" data-id="all">All Trees</button>` +
-    categories.map(c => `<button class="cat-btn" data-id="${c.id}">${c.category_name}</button>`).join('');
+    categories.map(c =>
+      `<button class="cat-btn" data-id="${c.id}">${c.category_name}</button>`
+    ).join('');
+
+  
   catList.addEventListener('click', (e) => {
     const btn = e.target.closest('.cat-btn');
     if (!btn) return;
+
     catList.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     loadPlants(btn.dataset.id);
@@ -22,15 +34,16 @@ async function loadCategories() {
 }
 
 
-const grid = document.querySelector('.cards-grid');
-
-
 
 
 
 const allPlants = "https://openapi.programming-hero.com/api/plants";
 const plantByCategoryWithID = id => `https://openapi.programming-hero.com/api/category/${id}`;
+
 async function loadPlants(categoryId = "all") {
+   grid.innerHTML = `<div class="spinner">
+    <span class="loading loading-dots loading-xl"></span>
+  </div>`;
   const url = categoryId === "all" ? allPlants : plantByCategoryWithID(categoryId);
   const res = await fetch(url);
   const data = await res.json();
@@ -71,19 +84,25 @@ const gridOfCards = document.querySelector('.cards-grid');
     addBtn.dataset.name = p.name;
     addBtn.dataset.price = p.price;
     addBtn.textContent = "Add to Cart";
-    const price = document.createElement("span");
-    price.className = "price";
-    price.textContent = `$${p.price}`;
-    foot.append(addBtn, price);
-
     
-    card.append(thumb, info, foot);
+const price = document.createElement("span");
+price.className = "price";
+price.textContent = `$${p.price}`;
 
-    
-    gridOfCards.appendChild(card);
+const meta = document.createElement("div");
+meta.className = "meta";
+meta.append(tag, price);
+
+info.append(title, desc, meta);
+
+
+foot.append(addBtn);
+
+card.append(thumb, info, foot);
+gridOfCards.appendChild(card);
   });
 }
-
+let total = 0;
 function handleAddToCartClick(addBtn) {
   addToCart({
     id: Number(addBtn.dataset.id),
@@ -128,8 +147,11 @@ const totalEl = document.querySelector('.cart-total strong');
    
     totalEl.textContent = `$${total}`;
   });
-}
 
+}async function loadCategories() {
+  const categories = await fetchCategories();
+  renderCategories(categories);
+}
 loadCategories();
 loadPlants();
 function renderPlantModal(plant) {
@@ -176,8 +198,17 @@ function renderPlantModal(plant) {
 }
 function handleCardClick(card) {
   const id = Number(card.dataset.id);
-  const plant = currentPlants.find(p => Number(p.id) === id);
+  let plant = null;
+
+  for (let p of currentPlants) {
+    if (Number(p.id) === id) {
+      plant = p;
+      break;
+    }
+  }
+
   if (!plant) return;
+
   renderPlantModal(plant);
   modal.showModal();
 }

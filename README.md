@@ -8,7 +8,7 @@
 
 
 3) What are arrow functions in ES6?
-    Ans:Arrow functions are a shorter syntax in ES6 that are used to write functions using () => {} instead using for..of loop or map.This reduces the number of the lines of the code,reduces complexity and they are useful in object methods. 
+    Ans:Arrow functions are a shorter syntax in ES6 that are used to write functions using () => {}.They allow implicit return for single expressions and inherit "this" from surrounding scope.This reduces the number of the lines of the code,reduces complexity and they are useful in object methods. 
 
 
 4) How does destructuring assignment work in ES6?
@@ -16,4 +16,4 @@
 
 
 5) Explain template literals in ES6. How are they different from string concatenation?
-    Ans:Template literals and string concatenation in ES6 differ in a way that template literals use backticks (`) instead of quotes and support string interpolation with ${expression} whereas string concatenation does it with +.
+    Ans:Template literals and string concatenation in ES6 differ in a way that template literals use backticks (`) instead of quotes and support string interpolation with ${expression} whereas string concatenation does it with +.Template literals allow multiline strings without escape characters, and can be used with tag functions but string concatenation does not provide these functionalities.

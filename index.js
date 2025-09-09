@@ -158,43 +158,35 @@ function renderPlantModal(plant) {
     const pmContent = document.getElementById('pm_content');
   pmContent.innerHTML = ""; 
 
-  const img = document.createElement("img");
-  img.src = plant.image;
-  img.alt = plant.name;
-  img.className = "pm-img";
+  
 
   const title = document.createElement("h1");
   title.className = "pm-title";
-  title.textContent = plant.name;
+  title.textContent =  plant.name;
+  const img = document.createElement("img");
+  img.src = plant.image;
+ 
+  img.className = "pm-img";
 
   const desc = document.createElement("p");
-  desc.className = "pm-desc";
-  desc.textContent = plant.description;
+desc.className = "pm-desc";
+desc.innerHTML = '<strong>Description:</strong> ' + plant.description;
 
   const meta = document.createElement("div");
   meta.className = "pm-meta";
 
   const badge = document.createElement("span");
   badge.className = "pm-badge";
-  badge.textContent = plant.category;
+  badge.innerHTML= '<strong>Category:</strong> '+plant.category;
 
   const price = document.createElement("span");
   price.className = "pm-price";
-  price.textContent = `$${plant.price}`;
+  price.innerHTML = '<strong>Price:</strong> '+`$${plant.price}`;
 
   meta.append(badge, price);
 
-  const addBtn = document.createElement("button");
-  addBtn.id = "pm_add";
-  addBtn.className = "pm-add";
-  addBtn.textContent = "Add to Cart";
 
-  addBtn.onclick = () => {
-    addToCart({ id: plant.id, name: plant.name, price: plant.price });
-    modal.close();
-  };
-
-  pmContent.append(img, title, desc, meta, addBtn);
+  pmContent.append(title,img, meta,desc);
 }
 function handleCardClick(card) {
   const id = Number(card.dataset.id);

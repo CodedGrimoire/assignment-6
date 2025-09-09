@@ -105,12 +105,10 @@
           <input type="email" placeholder="Your Email Address" required/>
           <select required>
             <option value="" disabled selected>Number of Trees</option>
-            <option>1</option>
-            <option>5</option>
-            <option>10</option>
-            <option>25</option>
-            <option>50</option>
-            <option>100</option>
+            <option>1 Tree-$5</option>
+            <option>5 Trees-$25</option>
+            <option>10 Trees-$50</option>
+          
           </select>
           <button class="yellow-button donate-btn" type="submit">Donate Now</button>
         </form>
@@ -125,9 +123,16 @@
   </footer>
 
  
-  <dialog id="plant_modal" class="modal">
-    <div class="modal-box" id="pm_content"></div>
-  </dialog>
+<dialog id="plant_modal" class="modal">
+  <div class="modal-box">
+    <div id="pm_content"></div>
+
+   
+    <form method="dialog" >
+      <button class="close-modal-btn">Close</button>
+    </form>
+  </div>
+</dialog>
 
   <script src="index.js"></script>
 </body>

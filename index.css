@@ -352,7 +352,7 @@ nav{
   gap:20px;
   align-items:center;
   justify-content:center;
-  color:rgb(123, 119, 119);
+  color:rgb(22, 21, 21);
   
 }
 .about-sect ul{
@@ -432,34 +432,47 @@ nav{
   margin-top:12px;
   font-size:1.25rem;
   font-weight:800;
-  color:#0e5131;
+  color:#000402;
 }
 
 #plant_modal .pm-desc{
   margin-top:6px;
   font-size:.95rem;
   line-height:1.45;
-  color:#2a4a37;
+  color:#011107;
 }
 
 #plant_modal .pm-meta{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
+  align-items:left;
+  flex-direction: column;
   margin-top:10px;
 }
 
 #plant_modal .pm-badge{
-  background:#e1f1e8;
-  color:#174a2f;
-  border-radius:999px;
-  padding:4px 10px;
-  font-weight:600;
-  font-size:.8rem;
+  color: #0b2316;
+
+
+  
+  
 }
+form {
+  text-align: right; 
+}
+.close-modal-btn {
+  background-color: #b2b7b4;
+  color: rgb(0, 0, 0);
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+}
+ 
+
 
 #plant_modal .pm-price{
-  font-weight:800;
+ 
   color:#0b2316;
 }
 

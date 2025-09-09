@@ -343,6 +343,7 @@ nav{
 
 .about-section{
   padding:48px 70px 56px;
+ 
 }
 
 .about-sect{
@@ -351,8 +352,14 @@ nav{
   gap:20px;
   align-items:center;
   justify-content:center;
+  color:rgb(123, 119, 119);
+  
 }
-
+.about-sect ul{
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
 .about-section h1{
   font-size:2rem;
   margin-bottom:16px;
@@ -491,6 +498,11 @@ footer{
   align-items:center;
   justify-content:center;
 }
+.upper{
+    display: flex;
+    justify-content: space-between;
+   
+  }
 
 @media (max-width:576px){
   .hero-leaf{
@@ -535,6 +547,34 @@ footer{
   .donate-btn{
     width:100%;
   }
+  nav{
+    padding:10px;
+    height:140px;
+  }
+  .nav-inner{
+display: flex;
+flex-direction: column;
+overflow: visible;
+gap: 10px;
+
+
+  }
+.about-sect {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+}
+
+.about-img {
+  width: 100%;
+  max-width: 1050px;
+  height: auto;
+  border-radius: 12px;
+  padding: 20px;
+}
+
 }
 .spinner {
   display: flex;
